@@ -13,27 +13,34 @@ class App extends Component {
     this.state = {
       page: 'location',
       location: '',
-      price: '1',
+      prices: [],
       type: ''
     };
   }
 
   onHandleInputChange = (event) => {
-    const target = event.target;
-    const value = target.type === 'checkbox' ? target.checked : target.value;
-    const name = target.name;
-
     this.setState({
-      [name]: value
+      [event.target.name]: event.target.value
     });
   }
+
+  onPriceChange = (event) => {
+    if(event.target.checked) {
+      this.state.prices.push(event.target.value);
+    }
+    else {
+      const index = this.state.prices.indexOf(event.target.value);
+      this.state.prices.splice(index, 1);
+    }
+  } 
 
   onPageChange = (page) => {
     this.setState({page: page});
   }
 
   createUrl = () => {
-    const { location, price, type } = this.state;
+    const { location, prices, type } = this.state;
+    let pricesStr = prices.join();
 
     axios.get('https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?', {
       headers: {
@@ -41,19 +48,20 @@ class App extends Component {
       },
       params: {
         location: location,
-        price: price,
-        term: type
+        ...(pricesStr ? {price: pricesStr} : {}),
+        ...(type ? {term: type} : {})
       }
 
     })
     .then(response => {
       const resResults = response.data.businesses
       console.log(resResults);
-    });
+    })
+    .catch(err => console.log(err));
   }
 
   render() {
-    const { page, location, price, type } = this.state;
+    const { page, location, prices, type } = this.state;
     return (
       <div className="App">
         <article className="br3 ba b--black-10 mv5 mw6 shadow-5 center">
@@ -68,8 +76,8 @@ class App extends Component {
                     page === 'price'
                       ? <Price 
                           onPageChange={this.onPageChange}
-                          onHandleInputChange={this.onHandleInputChange}
-                          price={price} />
+                          onPriceChange={this.onPriceChange}
+                          price={prices} />
                       : (
                           page === 'type'
                             ? <Type onPageChange={this.onPageChange} 

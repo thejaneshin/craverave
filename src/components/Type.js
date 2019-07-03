@@ -15,7 +15,10 @@ const Type = ({ onPageChange, onHandleInputChange, type }) => {
         onChange={onHandleInputChange}
       />
       <p onClick={() => onPageChange('price')} className="f6 fl link dim black db pointer">Back</p>
-      <p onClick={() => onPageChange('results')} className="f6 fr link dim black db pointer">Submit</p>
+      <button
+        onClick={() => onPageChange('results')}>
+        Submit
+      </button>
 		</div>
 	);
 }

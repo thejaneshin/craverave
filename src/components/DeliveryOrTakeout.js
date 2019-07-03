@@ -1,7 +1,7 @@
 import React from 'react';
 import './animate.css';
 
-const DeliveryOrTakeout = ({ onPageChange }) => {
+const DeliveryOrTakeout = ({ onPageChange, onHandleInputChange, delivery, takeout }) => {
 	return (
 		<div className="measure animated fadeIn">
 			<label className="f2 fw6 ph0 mh0">Delivery / Takeout?</label>
@@ -9,15 +9,17 @@ const DeliveryOrTakeout = ({ onPageChange }) => {
 				<label>
 					<input 
 						type="checkbox"
-						name="method"
-						value="d" />Delivery
+						name="delivery"
+						checked={delivery}
+						onChange={onHandleInputChange} />Delivery
 				</label>
 				<br/>
 				<label>
 					<input 
 						type="checkbox"
-						name="method"
-						value="t" />Takeout
+						name="takeout"
+						checked={takeout}
+						onChange={onHandleInputChange} />Takeout
 				</label>
 				<br/>
 			</div>

@@ -1,7 +1,7 @@
 import React from 'react';
 import './animate.css';
 
-const Location = ({ onPageChange }) => {
+const Location = ({ onPageChange, onHandleInputChange, location }) => {
 	return (
 		<div className="measure animated fadeIn">
 			<label className="f2 fw6 ph0 mh0" htmlFor="location">Location</label>
@@ -11,8 +11,16 @@ const Location = ({ onPageChange }) => {
         name="location"
         id="location"
         placeholder="address, neighborhood, city, state or zip"
+        value={location}
+        onChange={onHandleInputChange}
       />
-      <p onClick={() => onPageChange('price')} className="f6 fr link dim black db pointer">Next</p>
+
+      {
+        location
+          ? <p onClick={() => onPageChange('price')} className="f6 fr link dim black db pointer">Next</p>
+          : null
+      }
+      
 		</div>
 	);
 }

@@ -17,8 +17,8 @@ const Location = ({ onPageChange, onHandleInputChange, location }) => {
 
       {
         location
-          ? <p onClick={() => onPageChange('price')} className="f6 fr link dim black db pointer">Next</p>
-          : null
+          ? <p onClick={() => onPageChange('price')} className="f6 fr link dim black pointer">Next</p>
+          : <p className="f6 fr link light-silver">Next</p>
       }
       
 		</div>

@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 import Location from './components/Location';
 import Price from './components/Price';
-import DeliveryOrTakeout from './components/DeliveryOrTakeout';
-import Category from './components/Category';
+import Type from './components/Type';
 import Results from './components/Results';
 import './App.css';
 
@@ -14,9 +14,7 @@ class App extends Component {
       page: 'location',
       location: '',
       price: '1',
-      delivery: false,
-      takeout: false,
-      category: ''
+      type: ''
     };
   }
 
@@ -34,9 +32,28 @@ class App extends Component {
     this.setState({page: page});
   }
 
+  createUrl = () => {
+    const { location, price, type } = this.state;
+
+    axios.get('https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?', {
+      headers: {
+        Authorization: 'Bearer ' + process.env.REACT_APP_API_KEY
+      },
+      params: {
+        location: location,
+        price: price,
+        term: type
+      }
+
+    })
+    .then(response => {
+      const resResults = response.data.businesses
+      console.log(resResults);
+    });
+  }
 
   render() {
-    const { page, location, price, delivery, takeout, category } = this.state;
+    const { page, location, price, type } = this.state;
     return (
       <div className="App">
         <article className="br3 ba b--black-10 mv5 mw6 shadow-5 center">
@@ -54,19 +71,11 @@ class App extends Component {
                           onHandleInputChange={this.onHandleInputChange}
                           price={price} />
                       : (
-                          page === 'deliverytakeout'
-                            ? <DeliveryOrTakeout 
-                                onPageChange={this.onPageChange}
+                          page === 'type'
+                            ? <Type onPageChange={this.onPageChange} 
                                 onHandleInputChange={this.onHandleInputChange}
-                                delivery={delivery}
-                                takeout={takeout} />
-                            : ( 
-                                page === 'category'
-                                  ? <Category onPageChange={this.onPageChange} 
-                                      onHandleInputChange={this.onHandleInputChange}
-                                      category={category} />
-                                  : <Results />
-                              )
+                                type={type} />
+                            : <Results createUrl={this.createUrl} />
                         )
                   )
             }

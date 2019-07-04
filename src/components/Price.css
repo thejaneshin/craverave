@@ -28,5 +28,4 @@
 
 .ck-button input:checked + span {
     background-color:#c4f3a4;
-    color:#348c42;
 }

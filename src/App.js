@@ -13,14 +13,22 @@ class App extends Component {
     this.state = {
       page: 'location',
       location: '',
+      price1: false,
+      price2: false,
+      price3: false,
+      price4: false,
       prices: [],
       type: ''
     };
   }
 
   onHandleInputChange = (event) => {
-    this.setState({
-      [event.target.name]: event.target.value
+    const target = event.target;
+    const value = target.type === 'checkbox' ? target.checked : target.value;
+    const name = target.name;
+
+     this.setState({
+      [name]: value
     });
   }
 
@@ -32,13 +40,14 @@ class App extends Component {
       const index = this.state.prices.indexOf(event.target.value);
       this.state.prices.splice(index, 1);
     }
+    this.onHandleInputChange(event);
   } 
 
   onPageChange = (page) => {
     this.setState({page: page});
   }
 
-  createUrl = () => {
+  getRestaurants = () => {
     const { location, prices, type } = this.state;
     let pricesStr = prices.join();
 
@@ -61,7 +70,7 @@ class App extends Component {
   }
 
   render() {
-    const { page, location, prices, type } = this.state;
+    const { page, location, price1, price2, price3, price4, type } = this.state;
     return (
       <div className="App">
         <article className="br3 ba b--black-10 mv5 mw6 shadow-5 center">
@@ -77,13 +86,13 @@ class App extends Component {
                       ? <Price 
                           onPageChange={this.onPageChange}
                           onPriceChange={this.onPriceChange}
-                          price={prices} />
+                          price1={price1} price2={price2} price3={price3} price4={price4} />
                       : (
                           page === 'type'
                             ? <Type onPageChange={this.onPageChange} 
                                 onHandleInputChange={this.onHandleInputChange}
                                 type={type} />
-                            : <Results createUrl={this.createUrl} />
+                            : <Results getRestaurants={this.getRestaurants} />
                         )
                   )
             }

@@ -13,6 +13,11 @@ const Type = ({ onPageChange, onHandleInputChange, type }) => {
         placeholder="food"
         value={type}
         onChange={onHandleInputChange}
+        onKeyPress={(event => {
+          if (event.key === "Enter") {
+             onPageChange('results')
+          }
+        })}
       />
       <p onClick={() => onPageChange('price')} className="f6 fl link dim black db pointer">Back</p>
       <button

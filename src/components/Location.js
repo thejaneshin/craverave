@@ -13,6 +13,11 @@ const Location = ({ onPageChange, onHandleInputChange, location }) => {
         placeholder="address, neighborhood, city, state or zip"
         value={location}
         onChange={onHandleInputChange}
+        onKeyPress={(event => {
+          if (event.key === "Enter" && location !== "") {
+             onPageChange('price')
+          }
+        })}
       />
 
       {

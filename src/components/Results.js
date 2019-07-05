@@ -57,9 +57,9 @@ class Results extends React.Component {
                     <ul className="list pl0 ml5">
                       {businesses.map((business, index) => {
                       return (
-                        <li key={index} className="dt pl7 pb4">
+                        <li key={index} className="dt pl7 pb5">
                           <img src={business.image_url.replace('o.jpg', 'ls.jpg')} alt={business.name} className="dtc v-top mw-none br2" />
-                          <div className="dtc pl5 v-top lh-copy">
+                          <div className="dtc pl6 v-mid lh-copy">
                             <a href={business.url} target="_blank" rel="noopener noreferrer" className="f4 link dim">{business.name}</a>
                             <br/>
                             <div className="dt-row"><br/></div>

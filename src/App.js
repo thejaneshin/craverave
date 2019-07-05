@@ -49,42 +49,45 @@ class App extends Component {
   render() {
     const { page, location, price1, price2, price3, price4, type } = this.state;
     return (
-      <div className="App">
-            {
-              page === 'results'
-                ? <Results state={this.state} />
-                : (
-                    <article className="br3 ba b--black-10 mv5 mw6 shadow-5 center">
-                      <main className="pa4 black-80 mt5">
-                        {
-                          page === 'location'
-                            ? <Location 
-                                onPageChange={this.onPageChange}
-                                onHandleInputChange={this.onHandleInputChange}
-                                location={location} />
-                            : (
-                                page === 'price'
-                                  ? <Price 
-                                      onPageChange={this.onPageChange}
-                                      onPriceChange={this.onPriceChange}
-                                      price1={price1} price2={price2} price3={price3} price4={price4} />
-                                  : (
-                                      page === 'type'
-                                        ? <Type onPageChange={this.onPageChange} 
-                                            onHandleInputChange={this.onHandleInputChange}
-                                            type={type} />
-                                        : (
-                                            <div>
-                                              <h2>404</h2>
-                                            </div>
-                                          )
-                                    )
-                              )
-                        }
-                      </main>
-                    </article>  
-                  )   
-            }
+      <div>
+        <img src={require("./header.png")} alt="header" className="w-third mt3 center" />
+        {
+          page === 'results'
+            ? <Results state={this.state} />
+            : (
+                <div className="App">
+                  <article className="br3 ba b--black-10 mv5 mw6 shadow-5 center">
+                    <main className="pa4 black-80 mt5">
+                      {
+                        page === 'location'
+                          ? <Location 
+                              onPageChange={this.onPageChange}
+                              onHandleInputChange={this.onHandleInputChange}
+                              location={location} />
+                          : (
+                              page === 'price'
+                                ? <Price 
+                                    onPageChange={this.onPageChange}
+                                    onPriceChange={this.onPriceChange}
+                                    price1={price1} price2={price2} price3={price3} price4={price4} />
+                                : (
+                                    page === 'type'
+                                      ? <Type onPageChange={this.onPageChange} 
+                                          onHandleInputChange={this.onHandleInputChange}
+                                          type={type} />
+                                      : (
+                                          <div>
+                                            <h2>404</h2>
+                                          </div>
+                                        )
+                                  )
+                            )
+                      }
+                    </main>
+                  </article>  
+                </div>
+              )   
+        }
       </div>
     );
   }

@@ -3,7 +3,7 @@ import './animate.css';
 
 const Type = ({ onPageChange, onHandleInputChange, type }) => {
 	return (
-		<div className="measure animated fadeIn">
+		<div className="animated fadeIn">
 			<label className="f2 fw6 ph0 mh0" htmlFor="type">What type of food?</label>
 			<input
       	className="br3 b--light-silver pa2 mv5 input-reset ba bg-white w-100"

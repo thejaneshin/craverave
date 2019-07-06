@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import Location from './components/Location';
 import Price from './components/Price';
 import Type from './components/Type';
+import DecidedType from './components/DecidedType';
+import UndecidedType from './components/UndecidedType';
 import Results from './components/Results';
 import './App.css';
 
@@ -74,13 +76,19 @@ class App extends Component {
                                     price1={price1} price2={price2} price3={price3} price4={price4} />
                                 : (
                                     page === 'type'
-                                      ? <Type onPageChange={this.onPageChange} 
-                                          onHandleInputChange={this.onHandleInputChange}
-                                          type={type} />
+                                      ? <Type onPageChange={this.onPageChange} />
                                       : (
-                                          <div>
-                                            <h2>404</h2>
-                                          </div>
+                                          page === 'decided'
+                                            ? <DecidedType onPageChange={this.onPageChange} 
+                                                onHandleInputChange={this.onHandleInputChange}
+                                                type={type} />
+                                            : (
+                                                page === 'undecided'
+                                                  ? <UndecidedType onPageChange={this.onPageChange} 
+                                                      onHandleInputChange={this.onHandleInputChange}
+                                                      type={type} />
+                                                  : <div>404</div>
+                                              )
                                         )
                                   )
                             )

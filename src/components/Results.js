@@ -133,11 +133,11 @@ class Results extends React.Component {
                               </span>
                             </div>
                             <div className="ml3 v-mid dt-row f5">
-                              <span className="nowrap">
-                                {business.location.address1}
-                              </span>
+                              <a 
+                                href={`https://maps.google.com/?q=${business.name} ${business.location.address1} ${business.location.city}`} 
+                                target="_blank" rel="noopener noreferrer" 
+                                className="link dim">{business.location.address1}</a>
                             </div>
-                            
                           </div>
                         </li>
                       )})}

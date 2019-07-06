@@ -50,7 +50,9 @@ class App extends Component {
     const { page, location, price1, price2, price3, price4, type } = this.state;
     return (
       <div>
-        <img src={require("./header.png")} alt="header" className="w-third mt3 center" />
+        <div className="header pl5 pv2">
+          <img src={require("./header.png")} alt="header" width="15%" height="auto" />
+        </div>
         {
           page === 'results'
             ? <Results state={this.state} />

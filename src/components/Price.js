@@ -48,8 +48,8 @@ const Price = ({ onPageChange, onPriceChange, price1, price2, price3, price4 }) 
 					</label>
 				</div>
 			</div>
-    	<p onClick={() => onPageChange('location')} className="f6 mt5 fl link dim black db pointer">Back</p>
-      <p onClick={() => onPageChange('type')} className="f6 mt5 fr link dim black db pointer">Next</p>
+	    	<p onClick={() => onPageChange('location')} className="f6 mt5 fl link dim black db pointer">Back</p>
+	      <p onClick={() => onPageChange('type')} className="f6 mt5 fr link dim black db pointer">Next</p>
 		</div>
 	);
 }

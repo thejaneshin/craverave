@@ -4,6 +4,7 @@ import Price from './components/Price';
 import Type from './components/Type';
 import DecidedType from './components/DecidedType';
 import UndecidedType from './components/UndecidedType';
+import Random from './components/Random';
 import Results from './components/Results';
 import './App.css';
 
@@ -19,7 +20,10 @@ class App extends Component {
       price3: false,
       price4: false,
       prices: [],
-      type: ''
+      type: '',
+      allCategories: [],
+      notWanted: [],
+      randomPick: ""
     };
   }
 
@@ -45,7 +49,21 @@ class App extends Component {
   } 
 
   onPageChange = (page) => {
-    this.setState({page: page});
+    this.setState({page});
+  }
+
+  onCategoriesRetrieve = (allCategories) => {
+    this.setState({allCategories});
+  }
+
+  onNotWantedChange = (notWanted) => {
+    this.setState({notWanted});
+  }
+
+  onPickRandom = () => {
+    const leftovers = this.state.allCategories.filter((el) => !this.state.notWanted.includes(el));
+    const type = leftovers[Math.floor(Math.random() * leftovers.length)];
+    this.setState({type});
   }
 
   render() {
@@ -60,47 +78,60 @@ class App extends Component {
             ? <Results state={this.state} />
             : (
                 <div className="App">
-                  <article className="br3 ba b--black-10 mv5 mw6 shadow-5 center">
-                    <main className="pa4 black-80 mt5">
-                      {
-                        page === 'location'
-                          ? <Location 
-                              onPageChange={this.onPageChange}
-                              onHandleInputChange={this.onHandleInputChange}
-                              location={location} />
-                          : (
-                              page === 'price'
-                                ? <Price 
-                                    onPageChange={this.onPageChange}
-                                    onPriceChange={this.onPriceChange}
-                                    price1={price1} price2={price2} price3={price3} price4={price4} />
-                                : (
-                                    page === 'type'
-                                      ? <Type onPageChange={this.onPageChange} />
-                                      : (
-                                          page === 'decided'
-                                            ? <DecidedType onPageChange={this.onPageChange} 
-                                                onHandleInputChange={this.onHandleInputChange}
-                                                type={type} />
-                                            : (
-                                                page === 'undecided'
-                                                  ? <UndecidedType onPageChange={this.onPageChange} 
-                                                      onHandleInputChange={this.onHandleInputChange}
-                                                      type={type} />
-                                                  : <div>404</div>
-                                              )
-                                        )
-                                  )
-                            )
-                      }
-                    </main>
-                  </article>  
-                </div>
+                  {
+                    page === 'undecided'
+                      ? 
+                        <UndecidedType 
+                          onPageChange={this.onPageChange}
+                          onCategoriesRetrieve={this.onCategoriesRetrieve}
+                          onNotWantedChange={this.onNotWantedChange} />
+                      : (
+                          <article className="br3 ba b--black-10 mv5 mw6 shadow-5 center">
+                            <main className="pa4 black-80 mt5">
+                              {
+                                  page === 'location'
+                                    ? <Location 
+                                        onPageChange={this.onPageChange}
+                                        onHandleInputChange={this.onHandleInputChange}
+                                        location={location} />
+                                    : (
+                                        page === 'price'
+                                          ? <Price 
+                                              onPageChange={this.onPageChange}
+                                              onPriceChange={this.onPriceChange}
+                                              price1={price1} price2={price2} price3={price3} price4={price4} />
+                                          : (
+                                              page === 'type'
+                                                ? <Type onPageChange={this.onPageChange} />
+                                                : (
+                                                    page === 'decided'
+                                                      ? <DecidedType
+                                                          onPageChange={this.onPageChange} 
+                                                          onHandleInputChange={this.onHandleInputChange}
+                                                          type={type} />
+                                                      : (
+                                                          page === 'random'
+                                                            ? <Random 
+                                                                onPageChange={this.onPageChange}
+                                                                type={type}
+                                                                onPickRandom={this.onPickRandom} />
+                                                            : <div>404</div>
+                                                        )
+                                                  )
+                                            )
+                                      )
+                              }
+                            </main>
+                          </article>
+                        )
+                    }
+                  </div>
               )   
         }
       </div>
     );
   }
+
 
 }
 

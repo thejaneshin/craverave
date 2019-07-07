@@ -1,0 +1,18 @@
+{
+  "files": {
+    "main.css": "/craverave/static/css/main.27e6c0fa.chunk.css",
+    "main.js": "/craverave/static/js/main.12c873b3.chunk.js",
+    "main.js.map": "/craverave/static/js/main.12c873b3.chunk.js.map",
+    "runtime~main.js": "/craverave/static/js/runtime~main.17140894.js",
+    "runtime~main.js.map": "/craverave/static/js/runtime~main.17140894.js.map",
+    "static/css/2.31dafeb2.chunk.css": "/craverave/static/css/2.31dafeb2.chunk.css",
+    "static/js/2.8fa9582a.chunk.js": "/craverave/static/js/2.8fa9582a.chunk.js",
+    "static/js/2.8fa9582a.chunk.js.map": "/craverave/static/js/2.8fa9582a.chunk.js.map",
+    "index.html": "/craverave/index.html",
+    "precache-manifest.fdbf1ccbe1dc0e77436c14bec68c6552.js": "/craverave/precache-manifest.fdbf1ccbe1dc0e77436c14bec68c6552.js",
+    "service-worker.js": "/craverave/service-worker.js",
+    "static/css/2.31dafeb2.chunk.css.map": "/craverave/static/css/2.31dafeb2.chunk.css.map",
+    "static/css/main.27e6c0fa.chunk.css.map": "/craverave/static/css/main.27e6c0fa.chunk.css.map",
+    "static/media/header.png": "/craverave/static/media/header.a702299a.png"
+  }
+}
